@@ -99,14 +99,14 @@ Future<void> main() async
 	for (MethodMirror partFn in parts)
 	{
 		RegExpMatch match = nameScheme.firstMatch(partFn.simpleName.toString())!;
+		String day = match.group(1)!;
+		String part = match.group(2)!;
+
 		Iterable<String> input;
 
 		// If we fail to load input for a function, skip it
-		try { input = getInput(int.parse(match.group(1)!)); }
+		try { input = getInput(int.parse(day)); }
 		catch (e) { continue; }
-
-		String day = match.group(1)!;
-		String part = match.group(2)!;
 
 		int result = await lib.invoke(partFn.simpleName, [input]).reflectee;
 
