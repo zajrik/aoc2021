@@ -87,7 +87,7 @@ Future<void> main() async
 {
 	RegExp nameScheme = RegExp(r'day(\d{1,2})part(\d)');
 
-	// Load all functions in the library that match the name scheme
+	// Gather all functions in the library that match the name scheme
 	LibraryMirror lib = currentMirrorSystem().findLibrary(#advent);
 	List<MethodMirror> parts = lib.declarations.values
 		.whereType<MethodMirror>()
@@ -95,7 +95,7 @@ Future<void> main() async
 		.toList()
 		..sort((a, b) => a.simpleName.toString().compareNaturallyTo(b.simpleName.toString()));
 
-	// Run all functions
+	// Run all solutions
 	for (MethodMirror partFn in parts)
 	{
 		RegExpMatch match = nameScheme.firstMatch(partFn.simpleName.toString())!;
