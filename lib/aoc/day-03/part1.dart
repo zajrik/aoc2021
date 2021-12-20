@@ -9,14 +9,14 @@ Future<int> day3part1(Iterable<String> input) async
 		for (ListEntry bit in line.split('').entries)
 			(bit.value == '0' ? zeroes : ones)[bit.index] += 1;
 
-	String gamma = '';
-	String epsilon = '';
+	int gamma = 0;
+	int epsilon = 0;
 
 	for (int i = 0; i < 12; i++)
 	{
-		gamma += zeroes[i] > ones[i] ? '0' : '1';
-		epsilon += zeroes[i] > ones[i] ? '1' : '0';
+		gamma = (gamma << 1) + (zeroes[i] > ones[i] ? 0 : 1);
+		epsilon = (epsilon << 1) + (zeroes[i] > ones[i] ? 1 : 0);
 	}
 
-	return int.parse(gamma, radix: 2) * int.parse(epsilon, radix: 2);
+	return gamma * epsilon;
 }
