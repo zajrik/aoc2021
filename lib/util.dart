@@ -40,8 +40,18 @@ extension ListExtension<T> on List<T>
 		for (final T value in this)
 			yield ListEntry(index++, value);
 	}
-}
 
+	/// Returns a lazy iterable that yields sections of this list as lists of the
+	/// given length, or smaller if this cannot be evenly divided by the given length
+	Iterable<List<T>> partition(int sectionLength) sync*
+	{
+		for (int i = 0; i < length; i += sectionLength)
+			yield sublist(
+				i,
+				i + sectionLength > length ? length : i + sectionLength
+			);
+	}
+}
 
 /// Get the puzzle input for the given day
 Iterable<String> getInput(int day) =>
