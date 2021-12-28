@@ -1,12 +1,12 @@
 part of advent;
 
 /// Represents a cell on a bingo card
-class Cell
+class BingoCell
 {
 	int value = 0;
 	bool _marked = false;
 
-	Cell(this.value);
+	BingoCell(this.value);
 
 	void mark() => _marked = true;
 	bool get isMarked => _marked;
@@ -17,16 +17,16 @@ class BingoCard
 {
 	static const _indices = [0, 1, 2, 3, 4];
 
-	final List<List<Cell>> card = [];
+	final List<List<BingoCell>> card = [];
 
 	/// Add a line of cells to this bingo card
-	void addLine(List<Cell> line) => card.add(line);
+	void addLine(List<BingoCell> line) => card.add(line);
 
 	/// Mark a cell (if any cell matches the given number)
 	void mark(int number)
 	{
-		for (List<Cell> line in card)
-			for (Cell cell in line)
+		for (List<BingoCell> line in card)
+			for (BingoCell cell in line)
 				if (cell.value == number)
 					cell.mark();
 	}
@@ -50,9 +50,9 @@ class BingoCard
 	String toString()
 	{
 		String result = '';
-		for (List<Cell> line in card)
+		for (List<BingoCell> line in card)
 		{
-			for (Cell cell in line)
+			for (BingoCell cell in line)
 				result += '${cell.value.toString().padLeft(2)}${cell.isMarked ? '+ ' : '  '}';
 
 			result += '\n';
@@ -88,7 +88,7 @@ Future<int> day4part1(Iterable<String> input) async
 				line
 					.split(' ')
 					.where((e) => e != '')
-					.map((e) => Cell(int.parse(e)))
+					.map((e) => BingoCell(int.parse(e)))
 					.toList()
 			);
 
@@ -121,7 +121,7 @@ Future<int> day4part1(Iterable<String> input) async
 
 	// Solution is the sum of all unmarked numbers times the winning number
 	return winningCard.card
-		.fold<List<Cell>>([], (a, b) => a..addAll(b))
+		.fold<List<BingoCell>>([], (a, b) => a..addAll(b))
 		.where((e) => !e.isMarked)
 		.map((e) => e.value)
 		.sum * winningNumber;
