@@ -64,8 +64,8 @@ Future<int> day5part1(Iterable<String> input) async
 		{
 			for (
 				int x = line.start.x;
-				(line.start.x < line.end.x ? x <= line.end.x : x >= line.end.x);
-				(line.start.x < line.end.x ? x++ : x--)
+				line.start.x < line.end.x ? x <= line.end.x : x >= line.end.x;
+				line.start.x < line.end.x ? x++ : x--
 			)
 				ventMap[line.start.y][x].increment();
 		}
@@ -74,8 +74,8 @@ Future<int> day5part1(Iterable<String> input) async
 		{
 			for (
 				int y = line.start.y;
-				(line.start.y < line.end.y ? y <= line.end.y : y >= line.end.y);
-				(line.start.y < line.end.y ? y++ : y--)
+				line.start.y < line.end.y ? y <= line.end.y : y >= line.end.y;
+				line.start.y < line.end.y ? y++ : y--
 			)
 				ventMap[y][line.start.x].increment();
 		}
