@@ -2,6 +2,7 @@ library advent;
 
 import 'dart:io';
 import 'dart:mirrors';
+import 'dart:math';
 
 import 'package:path/path.dart';
 import 'package:collection/collection.dart';
