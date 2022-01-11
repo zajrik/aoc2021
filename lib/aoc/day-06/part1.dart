@@ -2,8 +2,10 @@ part of advent;
 
 Future<int> day6part1(Iterable<String> input) async
 {
-	Iterable<int> initialValues = input.first.split(',').map((e) => int.parse(e));
-	List<int> school = initialValues.toList();
+	List<int> school = input.first
+		.split(',')
+		.map((e) => int.parse(e))
+		.toList();
 
 	List<int> simulateBreeding(List<int> school)
 	{

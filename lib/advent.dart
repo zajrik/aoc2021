@@ -2,8 +2,9 @@ library advent;
 
 import 'dart:io';
 import 'dart:mirrors';
-import 'dart:math';
+import 'dart:isolate';
 
+import 'package:pedantic/pedantic.dart';
 import 'package:path/path.dart';
 import 'package:collection/collection.dart';
 
