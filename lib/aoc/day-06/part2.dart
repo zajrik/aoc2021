@@ -100,6 +100,5 @@ Future<int> day6part2(Iterable<String> input) async
 	// Terminate all sim isolates
 	await Future.wait(sims.map((e) => e.terminate()));
 
-	// return school.length;
 	return partitions.map((e) => e.length).sum;
 }
