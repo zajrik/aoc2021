@@ -87,6 +87,7 @@ part 'aoc/day-25/part2.dart';
 
 Future<void> main() async
 {
+	Stopwatch timer = Stopwatch();
 	RegExp nameScheme = RegExp(r'day(\d{1,2})part(\d)');
 
 	// Gather all functions in the library that match the name scheme
@@ -96,8 +97,6 @@ Future<void> main() async
 		.where((e) => nameScheme.hasMatch(e.simpleName.toString()))
 		.toList()
 		..sort((a, b) => a.simpleName.toString().compareNaturallyTo(b.simpleName.toString()));
-
-	Stopwatch timer = Stopwatch();
 
 	// Run all solutions
 	for (MethodMirror partFn in parts)
