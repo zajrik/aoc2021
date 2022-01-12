@@ -97,6 +97,8 @@ Future<void> main() async
 		.toList()
 		..sort((a, b) => a.simpleName.toString().compareNaturallyTo(b.simpleName.toString()));
 
+	Stopwatch timer = Stopwatch();
+
 	// Run all solutions
 	for (MethodMirror partFn in parts)
 	{
@@ -110,12 +112,17 @@ Future<void> main() async
 		try { input = getInput(int.parse(day)); }
 		catch (e) { continue; }
 
+		timer.reset();
+		timer.start();
+
 		int result = await lib.invoke(partFn.simpleName, [input]).reflectee;
+
+		timer.stop();
 
 		// -0xdeadbeef is a placeholder value for unimplemented parts, skip it
 		if (result == -0xdeadbeef)
 			continue;
 
-		print('Day $day, part $part: $result');
+		print('Day $day, part $part: $result - ${timer.elapsedMicroseconds / 1000}ms');
 	}
 }
